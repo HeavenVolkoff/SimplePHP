@@ -1,2 +1,2 @@
 # SimplePHP
-Um Micro-Framework PHP para fins educacionais
+Um Micro-Framework PHP Restful para fins educacionais

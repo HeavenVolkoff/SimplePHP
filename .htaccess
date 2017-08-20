@@ -1,0 +1,33 @@
+################################################################################
+# HTACCESS:                                                                    #
+#   Arquivo de configuração da aplicação Apache (Servidor). Seu propósito é    #
+#   definir certas regras que customizam o comportamento do Apache quando ele  #
+#   acessa os arquivos contidos neste diretório                                #
+################################################################################
+
+# Regra que define qual arquivo deve ser enviado quando o usuário acessar a raiz
+# desse diretório
+DirectoryIndex index.html
+
+# Desabilita a listagem dos arquivos em diretórios
+Options -Indexes
+
+# Se o módulo `mod_rewrite.c` estiver carregado pelo Apache execute as regras
+# incluidas na tag
+<IfModule mod_rewrite.c>
+    # Desabilita a busca implicita de arquivos
+    <IfModule mod_negotiation.c>
+        Options -MultiViews
+    </IfModule>
+
+    # Habilita a engine de reescrita do caminho da requisição
+    RewriteEngine On
+
+    # Redireciona todos os caminhos, que não sejam o root do diretório, a pasta
+    # `assets` ou arquivos `html`, para uma página de error 404
+    RewriteRule !((^$)|(^assets/)|(\.html$)) - [NC,R=404,L]
+
+    # Trata acessos com url de autenticação
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
