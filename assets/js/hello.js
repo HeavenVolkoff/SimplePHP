@@ -1,5 +1,5 @@
 window.isReady(
-  function (window) {
+  function () {
     'use strict'
 
     var document = window.document
