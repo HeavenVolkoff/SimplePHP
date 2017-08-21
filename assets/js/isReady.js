@@ -16,7 +16,7 @@
   }
 
   function isReady (cb) {
-    if (callbacks === null) cb()
+    if (callbacks === null) window.setTimeout(cb)
     else callbacks.push(cb)
   }
 
