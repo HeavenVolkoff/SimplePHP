@@ -1,34 +1,27 @@
-((window) => {
+(function () {
   'use strict'
-  /**
-   * @type {?Array}
-   */
-  let callbacks = []
+
+  var callbacks = []
 
   function execCb () {
-    const length = callbacks.length
-    for (let i = 0; i < length; ++i) callbacks[i].call(window, window)
+    var length = callbacks.length
+    for (var i = 0; i < length; ++i) callbacks[i].call(window)
     callbacks = null
   }
 
   function domIsReady () {
     document.removeEventListener('DOMContentLoaded', domIsReady)
     window.removeEventListener('load', domIsReady)
-    isReady()
+    execCb()
   }
 
-  /**
-   * @param {function()=} cb
-   */
   function isReady (cb) {
-    if (arguments.length === 0) return execCb()
-
     if (callbacks === null) cb()
     else callbacks.push(cb)
   }
 
   function init () {
-    const document = window.document
+    var document = window.document
 
     if (
       document.readyState === 'complete' ||
@@ -44,6 +37,6 @@
     }
   }
 
-  window['isReady'] = isReady
   window['init'] = init
-})(typeof window === 'object' ? window : this)
+  window['isReady'] = isReady
+})()
