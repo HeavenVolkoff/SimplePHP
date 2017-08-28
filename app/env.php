@@ -19,3 +19,17 @@
  * ao nível de detalhamento que as informações de depuração serão apresentadas
  */
 define('DEVELOPMENT', true);
+
+$GLOBALS["DATABASE_INFO"] = [
+  'user' => 'root',
+  'password' => '',
+
+  'mysql' => [
+    'host' => 'localhost',
+    'port' => 3306,
+    'unix_socket' => '',
+
+    'database' => 'test',
+    'charset' => 'utf8',
+  ]
+];

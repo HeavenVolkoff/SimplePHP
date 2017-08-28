@@ -34,10 +34,10 @@ abstract class Singleton {
   private static $_instances = [];
 
   /**
-   * Construtor privado impede múltipla instanciação da classe através do
-   * operador `new`
+   * Construtor protegido impede múltipla instanciação da classe através do
+   * operador `new`, mas permite que classes filhas o sobrescrevam
    */
-  final private function __construct() {}
+  protected function __construct() {}
 
   /**
    * Método privado `clone` impede a clonagem de uma instância através do

@@ -51,7 +51,13 @@ class Router extends Singleton {
     }
 
     // Se houver uma função associada com esse método e caminho execute-a
-    return $this->routes[$method][$path]();
+    try {
+      return $this->routes[$method][$path]();
+    } catch (Exception $e) {
+      // TODO: allow DEVELOPMENT to get more info on errors
+      // TODO: PRODUCTION should only get a generic error message
+      serverError($e->getMessage());
+    }
   }
 
   /**
