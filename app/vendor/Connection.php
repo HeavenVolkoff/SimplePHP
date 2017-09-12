@@ -15,7 +15,7 @@ class Connection extends Singleton {
         "unix_socket=$dbInfo[unix_socket]" :
         ("host=$dbInfo[host]" . (
           empty($dbInfo['port'] ? '' : ";port=$dbInfo[port]")
-          ))
+        ))
       ) .
       ";dbname=$dbInfo[database]" .
       (empty($dbInfo['charset'] ? '' : ";charset=$dbInfo[charset]"))
@@ -46,10 +46,8 @@ class Connection extends Singleton {
     );
   }
 
-  public function raw ($query, array $data = array()) {
-    $connection = $this->con;
-    $stmt = $connection->prepare($query);
-    $stmt->execute($data);
-    return $stmt;
+  public function query ($query, array $data = array()) {
+    $stmt = $this->con->prepare($query);
+    return $stmt->execute($data) ? $stmt : NULL;
   }
 }
