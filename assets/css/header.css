@@ -1,0 +1,128 @@
+body > header {
+    width: 100%;
+    height: 75vh;
+    display: flex;
+    flex-flow: column;
+    min-height: 300px;
+    transition: height 1s cubic-bezier(1,0,1,1);
+}
+
+.overflow_ellipsis {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+body > header > nav {
+    color: white;
+    height: 5rem;
+    position: relative;
+    background: rgb(47, 46, 46);
+}
+
+body > header > nav .menu-button {
+    height: 100%;
+    padding: 0 1rem;
+}
+
+body > header > nav .menu-main {
+    top: 5rem;
+    width: 100%;
+    display: none;
+    position: absolute;
+    flex-flow: column;
+    background: inherit;
+    box-shadow: 0 22px 40px -10px rgba(0,0,0,0.4);
+    justify-content: space-between;
+}
+
+body > header > nav .menu-main.show {
+    display: flex;
+}
+
+body > header > nav .menu-main > ul {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+body > header > nav .menu-main .menu-social-itens {
+    flex-flow: row;
+}
+
+body > header > nav .menu-main .menu-social-itens > li {
+    flex: auto;
+    justify-content: center;
+}
+
+body > header > nav .menu-main > ul > li {
+    height: 100%;
+    display: flex;
+    padding: 1rem 1rem;
+    flex-flow: row;
+    align-items: center;
+}
+
+body > header > nav .menu-main > ul > li:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+body > header > .title-image {
+    flex: auto;
+    width: 100%;
+    display: flex;
+    background: url('../img/header_background.jpg') no-repeat fixed center;
+    font-family: 'Merriweather', "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    align-items: center;
+    background-size: cover;
+    justify-content: center;
+}
+
+body > header > .title-image .title-container {
+    flex: auto;
+    display: flex;
+    padding: 1rem 0;
+    flex-flow: column;
+    background: #2F2E2E;
+    align-items: center;
+    justify-content: center;
+}
+
+body > header > .title-image .title-container > .title {
+    color: #fff;
+}
+
+body > header > .title-image .title-container > .subtitle {
+    color: #b3b3b3;
+    text-transform: uppercase;
+}
+
+@media all and (min-width: 600px) {
+    body > header > .title-image .title-container {
+        flex: none;
+        padding-left: 12rem;
+        padding-right: 12rem;
+    }
+
+    body > header > nav {
+        height: auto;
+    }
+
+    body > header > nav .menu-button {
+        display: none;
+    }
+
+    body > header > nav .menu-main {
+        top: 0;
+        width: 100%;
+        display: flex;
+        position: relative;
+        flex-flow: row;
+        box-shadow: none;
+    }
+
+    body > header > nav .menu-main > ul {
+        flex-flow: row;
+    }
+}

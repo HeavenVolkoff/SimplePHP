@@ -1,0 +1,108 @@
+body > footer {
+    color: white;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    align-items: center;
+    font-family: 'Merriweather', "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    justify-content: center;
+    background-color: black;
+}
+
+body > footer > .title {
+    display: flex;
+    padding: 1rem 0;
+    align-items: center;
+    justify-content: center;
+}
+
+body > footer > .info {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+}
+
+body > footer > .info > * {
+    flex: 1;
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+body > footer > .info > *:not(:last-child) {
+    border-top: 2px solid rgba(47, 46, 46, 1);
+}
+
+body > footer > .info > .social {
+    flex-flow: row;
+    font-size: 2rem;
+    justify-content: space-around;
+}
+
+body > footer > .info > .newsletter {
+    flex-flow: column;
+    align-items: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+body > footer > .info > .newsletter > * {
+    width: 100%;
+}
+
+body > footer > .info > .newsletter > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+body > footer > .info > .newsletter > input {
+    font: normal normal normal 13px/1.4em 'Merriweather', serif;
+    color: #2F2E2E;
+    height: 2.5rem;
+    border: 0.1rem solid #605E5E;
+    background-color: #CCCCCC;
+}
+
+body > footer > .info > .newsletter > button[type="submit"] {
+    color: white;
+    height: 2.5rem;
+    cursor: pointer;
+    border: 0.1rem solid white;
+    transition: background-color 0.25s ease-in, color 0.25s ease-out;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+}
+
+@media all and (min-width: 740px) {
+    body > footer {
+        height: 20rem;
+        padding: 0 3.5rem 4em;
+    }
+
+    body > footer > * {
+        flex: 1;
+    }
+
+    body > footer > .title {
+        padding: 0;
+    }
+
+    body > footer > .info {
+        flex-flow: row;
+        border-top: 2px solid rgba(47, 46, 46, 1);
+    }
+
+    body > footer > .info > * {
+        padding-bottom: 0;
+    }
+
+    body > footer > .info > .newsletter > * {
+        max-width: 20rem;
+    }
+
+    body > footer > .info > *:not(:last-child) {
+        border-top: none;
+        border-right: 2px solid rgba(47, 46, 46, 1);
+    }
+}

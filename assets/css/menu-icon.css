@@ -1,0 +1,21 @@
+button.menu-button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 3px 6px;
+    background: none;
+    border-radius: 4px;
+}
+
+button.menu-button:active {
+    background: rgba(240, 240, 240, .1);
+}
+
+button.menu-button > span {
+    width: 22px;
+    height: 2px;
+    margin: 4px 0;
+    display: block;
+    background: #f0f0f0;
+    border-radius: 1px;
+}

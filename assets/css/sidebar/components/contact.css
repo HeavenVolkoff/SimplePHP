@@ -1,0 +1,34 @@
+aside.sidebar > section .contact > form {
+    color: #2F2E2E;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    font-family: 'Merriweather', "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+aside.sidebar > section .contact > form > * {
+    height: 2.5rem;
+    border: 0.1rem solid #605E5E;
+    padding: 0.5rem;
+}
+
+aside.sidebar > section .contact > form > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+aside.sidebar > section .contact > form textarea {
+    resize: vertical;
+    min-height: 6rem;
+}
+
+aside.sidebar > section .contact > form button[type="submit"] {
+    cursor: pointer;
+    transition: background-color 0.25s ease-in, color 0.25s ease-out;
+    border-radius: 0.25rem;
+    text-transform: uppercase;
+}
+
+aside.sidebar > section .contact > form button[type="submit"]:hover {
+    color: white;
+    background-color: black;
+}

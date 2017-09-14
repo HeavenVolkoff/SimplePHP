@@ -1,23 +1,179 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt_BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hello World!</title>
-    <script src="assets/js/isReady.js"></script>
-    <script src="assets/js/hello.js" defer async></script>
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=fetch,Promise.prototype.finally&flags=gated&unknown=polyfill&callback=init"
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>NewsNet</title>
+
+    <meta property="og:url" content="https://www.newsnet.com.br">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="NewsNet">
+    <meta property="og:image" content="assets/assets/img/default.png">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:description" content="NewsNet - Site de notícias">
+
+    <!-- Style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/home.css"/>
+
+    <!-- Javascript -->
+    <script>
+      var cbs = []
+      var win = window
+      var doc = window.document
+
+      function execCbs () {
+        var temp = cbs
+        win.removeEventListener('load', execCbs)
+        doc.removeEventListener('DOMContentLoaded', execCbs)
+        for (var l = cbs.length, i = 0; i < l; ++i) {
+          win.setTimeout(function (i) { temp[i].call(win) }, 0, i)
+        }
+        cbs = null
+      }
+
+      function init () {
+        if (
+          doc.readyState === 'complete' ||
+          (doc.readyState !== 'loading' && !doc.documentElement.doScroll)
+        ) {
+          win.setTimeout(execCbs)
+        } else {
+          win.addEventListener('load', execCbs)
+          doc.addEventListener('DOMContentLoaded', execCbs)
+        }
+      }
+
+      function isReady (cb) {
+        if (cbs === null) win.setTimeout(function () { cb.call(win) })
+        else cbs.push(cb)
+      }
+
+      win['init'] = init
+      win['isReady'] = isReady
+    </script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es5,es6,es7,es2017,default-3.6,String.fromCodePoint,Promise.prototype.finally,fetch,HTMLDocument,MutationObserver,devicePixelRatio,NodeList.prototype.@@iterator,HTMLCanvasElement.prototype.toBlob,Element.prototype.dataset&flags=gated&version=latest&unknown=polyfill&callback=init"
             defer async></script>
+    <script src="assets/js/menu-icon.js"></script>
 </head>
+
 <body>
-    <noscript>
-        <p>
-            Javascript está desabilitado, por favor habilite-o para poder
-            usufruir do completo funcionamento dessa página
-        </p>
-    </noscript>
-    <h1 id="header"></h1>
+<header>
+    <nav>
+        <button type="button" class="menu-button" data-target="menu-main">
+            <span class="sr-only">Toggle navigation</span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="menu-main" id="menu-main">
+            <ul class="menu-itens">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Sobre</a></li>
+            </ul>
+            <ul class="menu-social-itens">
+                <li>
+                    <a href="#">
+                        <i class="fa fa-facebook-square"
+                           aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-google-plus-square"
+                           aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user-circle"
+                           aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="title-image">
+        <div class="title-container">
+            <h1 class="title">NewsNet</h1>
+            <h6 class="subtitle">Trazendo conteúdo de qualidade.</h6>
+        </div>
+    </div>
+</header>
+<main class="loading">
+    <article></article>
+
+    <aside class="sidebar">
+        <section class="collapsible">
+            <h5 class="title">Postagens Recentes</h5>
+            <div class="collapse recent-posts"></div>
+        </section>
+
+        <section class="collapsible">
+            <h5 class="title">Galeria</h5>
+            <div class="collapse gallery">
+                <figure>
+                    <!--<img src="" alt="Gastronomia">-->
+                </figure>
+            </div>
+        </section>
+
+        <section class="collapsible">
+            <h5 class="title">Contato</h5>
+            <div class="collapse contact">
+                <form action="#">
+                    <input name="nome" placeholder="Nome"/>
+                    <input type="email" name="email" placeholder="Email"/>
+                    <input name="assunto" placeholder="Assunto"/>
+                    <textarea title="Mensagem"
+                              placeholder="Mensagem"></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </section>
+    </aside>
+</main>
+<footer>
+    <div class="title">
+        <h5>NewsNet</h5>
+    </div>
+    <div class="info">
+        <ul class="social">
+            <li>
+                <a href="#">
+                    <i class="fa fa-facebook-square"
+                       aria-hidden="true">
+                    </i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-google-plus-square"
+                       aria-hidden="true">
+                    </i>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-user-circle"
+                       aria-hidden="true">
+                    </i>
+                </a>
+            </li>
+        </ul>
+        <form class="newsletter">
+            <h6>Newsletter</h6>
+            <input type="email" name="email" placeholder="Digite seu Email"/>
+            <button type="submit">ENTRE</button>
+        </form>
+        <div>
+            <p><i class="fa fa-copyright" aria-hidden="true"></i>2017 Trabalho Escolar.</p>
+        </div>
+    </div>
+</footer>
 </body>
+
 </html>

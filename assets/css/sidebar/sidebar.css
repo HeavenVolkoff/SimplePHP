@@ -1,0 +1,29 @@
+aside.sidebar {
+    display: none;
+    flex-flow: column;
+}
+
+aside.sidebar > section {
+    margin-bottom: 2rem;
+}
+
+aside.sidebar > section > .title {
+    padding: 1rem 0;
+    border-top: 1px solid rgba(204, 204, 204, 1);
+    font-weight: normal;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(204, 204, 204, 1);
+    text-transform: uppercase;
+}
+
+aside.sidebar > section,
+aside.sidebar > section > .collapse {
+    display: flex;
+    flex-flow: column;
+}
+
+@media all and (min-width: 740px) {
+    aside.sidebar {
+        display: flex;
+    }
+}

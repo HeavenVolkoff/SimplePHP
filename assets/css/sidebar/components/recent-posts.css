@@ -1,0 +1,25 @@
+aside.sidebar > section .recent-posts .post {
+    cursor: pointer;
+    display: flex;
+    flex-flow: row;
+}
+
+aside.sidebar > section .recent-posts .post:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+aside.sidebar > section .recent-posts .post > * {
+    flex: 1;
+}
+
+aside.sidebar > section .recent-posts .post img {
+    object-fit: cover;
+}
+
+aside.sidebar > section .recent-posts .post > figcaption {
+    display: flex;
+    flex-flow: column;
+    margin-left: 0.5rem;
+    padding-bottom: 2rem;
+    justify-content: space-between;
+}

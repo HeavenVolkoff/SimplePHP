@@ -1,0 +1,70 @@
+body > main {
+    display: flex;
+    position: relative;
+    flex-flow: row;
+    min-height: 200px;
+    transition: height 1s ease;
+    margin-bottom: 2rem;
+    justify-content: space-around;
+    background-color: white;
+}
+
+body > main.loading:after {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    display: block;
+    position: absolute;
+    background: white url("../img/spinner.svg") no-repeat center;
+}
+
+body > main > article {
+    flex: auto;
+    margin: 1rem 1rem 0 1rem;
+}
+
+body > main > article > section.post > .title {
+    font-weight: normal;
+}
+
+body > main > article > section.post > figure {
+    margin-top: 1rem;
+}
+
+body > main > article > section.post > figure .overlay {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+    position: absolute;
+    transition: background-color 0.5s ease;
+}
+
+body > main > article > section.post > figure > figcaption {
+    margin-top: 0.5rem;
+}
+
+body > main > article > section.post > figure > figcaption .read-more {
+    color: #505050;
+    cursor: pointer;
+    line-height: 2;
+    border-bottom: 0.1rem solid #605E5E;
+}
+
+body > main > aside.sidebar {
+    flex: 3;
+    margin: 1rem 1rem 0 2rem;
+}
+
+@media all and (min-width: 740px) {
+    body > main {
+        margin: 2rem 5rem;
+    }
+
+    body > main > article {
+        flex: 7;
+        margin-right: 0;
+    }
+}

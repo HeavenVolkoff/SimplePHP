@@ -5,7 +5,7 @@ window.isReady(
     var document = window.document
 
     window.fetch('app/hello', {
-      headers: new Headers({
+      headers: new window.Headers({
         'Accept': 'application/json'
       })
     })
@@ -19,8 +19,6 @@ window.isReady(
           if (typeof json === 'object' && json.error) {
             throw new Error(json.error)
           }
-
-          document.getElementById('header').innerText = json
         }
       )
       .catch(
