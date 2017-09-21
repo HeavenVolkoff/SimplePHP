@@ -74,3 +74,8 @@ Temporary Items
 
 ## File-based project format:
 *.iws
+
+### Project ###
+
+# Ignore backup files
+*.bak
