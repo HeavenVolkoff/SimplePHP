@@ -30,13 +30,20 @@ include_once(__DIR__ . '/routes.php');
  * requisitados
  */
 Router::getInstance()->_exec(
-  // Variável interna do PHP que armazena qual método HTTP foi requisitado
+// Variável interna do PHP que armazena qual método HTTP foi requisitado
   $_SERVER['REQUEST_METHOD'],
   // Computa o caminho, relativo à pasta raiz do projeto, do recurso requisitado
   str_replace(
     ROOT,
     "",
     // Variável interna do PHP que armazena o caminho do recurso requisitado
-    $_SERVER['REQUEST_URI']
+    (function () {
+      $path       = parse_url($_SERVER['REQUEST_URI'])['path'];
+      $rootLength = strlen(ROOT);
+
+      return substr($path, 0, $rootLength) == ROOT
+        ? substr($path, $rootLength)
+        : $path;
+    })()
   )
 );

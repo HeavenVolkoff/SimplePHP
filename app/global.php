@@ -29,28 +29,33 @@ include_once(__DIR__ . '/env.php');
  * servidor (e.x: htdocs), do diretório desse projeto
  */
 define("ROOT",
-  str_replace(
-    $_SERVER["DOCUMENT_ROOT"],
-    "",
-    dirname(__FILE__) . '/'
-  )
+  (function () {
+    $dirName            = dirname(__FILE__);
+    $documentRoot       = $_SERVER["DOCUMENT_ROOT"];
+    $documentRootLength = strlen($documentRoot);
+
+    return (substr($dirName, 0, $documentRootLength) == $documentRoot
+        ? substr(dirname(__FILE__), $documentRootLength)
+        : $dirName) . '/';
+  })()
 );
 
 /**
  * Codifica $data como json a envia como corpo da resposta à requisição,
  * finalizando a execução da aplicação.
  *
+ * @param string $error Parâmetro opcional de error a ser enviado no json
  * @param mixed $data Estrutura de dados que será convertida em JSON e enviada
  *                    como resposta
  */
-function json($data) {
+function json($error, $data) {
   /**
    * Define o header responsável por identificar o tipo de resposta que será
    * enviada. Neste caso o tipo é JSON com codificação UTF-8
    */
   header("Content-Type: application/json;charset=utf-8");
   // Terminamos a aplicação enviando os dados codificados em formato JSON
-  exit(json_encode($data));
+  exit(json_encode(['error' => $error, 'data' => $data]));
 }
 
 /**
@@ -59,13 +64,10 @@ function json($data) {
  * @param string $message Mensagem a ser passada como causa do error
  */
 function serverError($message) {
-  // Armazena a mensagem de error
-  $json = [];
-  $json['error'] = $message;
   // Define o código da resposta para 500 (Internal Server Error)
   http_response_code(500);
   // Envia o error e finaliza a aplicação
-  json($json);
+  json($message, NULL);
 }
 
 /**
@@ -74,11 +76,11 @@ function serverError($message) {
  * @param string $file Caminho para o arquivo não encontrado
  */
 function notFound($file) {
-  // Armazena a mensagem de error
-  $json = [];
-  $json['error'] = 'File: ' . ($file ?? $_SERVER['REQUEST_URI']) . ' not found';
   // Define o código de resposta para 404 (Not Found)
   http_response_code(404);
   // Envia o error e finaliza a aplicação
-  json($json);
+  json(
+    'File: ' . ($file ?? $_SERVER['REQUEST_URI']) . ' not found',
+    NULL
+  );
 }
