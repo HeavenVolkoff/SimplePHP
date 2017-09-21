@@ -15,48 +15,22 @@
     <meta property="og:locale" content="pt_BR">
     <meta property="og:description" content="NewsNet - Site de notícias">
 
-    <!-- Style -->
-    <link rel="stylesheet" type="text/css" href="assets/css/home.css"/>
+    <!-- ### Style ### -->
+    <!-- StyleSheet para normalização e conserto do ambiente, para se aproximar ao máximo do padrões W3C -->
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <!-- Abaixo são as StyleSheets responsáveis pelo layout da aplicação -->
+    <link rel="stylesheet" href="assets/css/home.css"/>
 
-    <!-- Javascript -->
-    <script>
-      var cbs = []
-      var win = window
-      var doc = window.document
-
-      function execCbs () {
-        var temp = cbs
-        win.removeEventListener('load', execCbs)
-        doc.removeEventListener('DOMContentLoaded', execCbs)
-        for (var l = cbs.length, i = 0; i < l; ++i) {
-          win.setTimeout(function (i) { temp[i].call(win) }, 0, i)
-        }
-        cbs = null
-      }
-
-      function init () {
-        if (
-          doc.readyState === 'complete' ||
-          (doc.readyState !== 'loading' && !doc.documentElement.doScroll)
-        ) {
-          win.setTimeout(execCbs)
-        } else {
-          win.addEventListener('load', execCbs)
-          doc.addEventListener('DOMContentLoaded', execCbs)
-        }
-      }
-
-      function isReady (cb) {
-        if (cbs === null) win.setTimeout(function () { cb.call(win) })
-        else cbs.push(cb)
-      }
-
-      win['init'] = init
-      win['isReady'] = isReady
-    </script>
-    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es5,es6,es7,es2017,default-3.6,String.fromCodePoint,Promise.prototype.finally,fetch,HTMLDocument,MutationObserver,devicePixelRatio,NodeList.prototype.@@iterator,HTMLCanvasElement.prototype.toBlob,Element.prototype.dataset&flags=gated&version=latest&unknown=polyfill&callback=init"
-            defer async></script>
-    <script src="assets/js/menu-icon.js"></script>
+    <!-- ### Javascript ### -->
+    <!-- Função de inicialização, veja em assets/js/isReady.js a versão não minificada do código -->
+    <script src="assets/js/isReady.js"></script>
+    <!-- Polyfill para JavaScript. Prepara o ambiente para se aproximar ao máximo do padrões W3C e ECMAScript -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=es5,es6,es7,es2017,default-3.6,String.fromCodePoint,Promise.prototype.finally,fetch,HTMLDocument,MutationObserver,devicePixelRatio,NodeList.prototype.@@iterator,HTMLCanvasElement.prototype.toBlob,Element.prototype.dataset&flags=gated&version=latest&unknown=polyfill&callback=init" defer async></script>
+    <!-- Shim para JavaScript. Injeta algumas melhorias nos padrões W3C e ECMAScript -->
+    <script src="assets/js/shim.js" defer></script>
+    <script src="assets/js/retrieveComponent.js" id="retrieveComponent" defer></script>
+    <script src="assets/js/menu-icon.js" defer></script>
+    <script src="assets/js/app.js" defer></script>
 </head>
 
 <body>
@@ -103,8 +77,8 @@
         </div>
     </div>
 </header>
-<main class="loading">
-    <article></article>
+<main class="loading" id="main">
+    <article id="posts-container"></article>
 
     <aside class="sidebar">
         <section class="collapsible">

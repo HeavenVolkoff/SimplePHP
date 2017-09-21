@@ -1,4 +1,4 @@
-window.isReady(function () {
+window.isReadyDOM(function () {
   'use strict'
   Array.prototype.forEach.call(
     document.getElementsByClassName('menu-button'),
