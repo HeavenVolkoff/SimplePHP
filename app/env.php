@@ -27,8 +27,6 @@ $GLOBALS["DATABASE_INFO"] = [
   'mysql' => [
     'host' => 'localhost',
     'port' => 3306,
-    'unix_socket' => '',
-
     'database' => 'test',
     'charset' => 'utf8',
   ]
