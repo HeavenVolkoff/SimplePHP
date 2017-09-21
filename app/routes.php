@@ -22,7 +22,7 @@ Router::getInstance()
   // Index
   ->get('/hello',
     function () {
-      json('Hello World!');
+      json(NULL, 'Hello World!');
     }
   )
 
